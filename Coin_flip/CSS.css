@@ -1,0 +1,123 @@
+body {
+  background: #fff;
+  font-family: 'Ubuntu', sans-serif;
+}
+#coin {
+}
+#button {
+  position: relative;
+  background:orange;
+  color:#fff;
+  padding:10px 15px;
+  border-radius:2px;
+  display:inline-block;
+  transition:0.5s;
+  cursor:pointer;
+  &:hover {
+    opacity:0.5;
+  }
+}
+#heads{
+  position: relative;
+  left: 0px;
+  top: 0px;
+}
+#head{
+  position: relative;
+  opacity: 0;
+  left: 0px;
+  top: 0px;
+}
+#tail{
+  position: absolute;
+  opacity: 0;
+  left: 0px;
+  top: 0px;
+}
+#tails{
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+
+.animate-coinh {
+  animation: flip1 .4s 4;
+}
+@keyframes flip1 {
+  0% {
+    transform: scale3d(1,1,1) rotateX(0deg);
+    //box-shadow: 0 2px 4px rgba(0,0,0,.3);
+  }
+  25% {
+    transform: scale3d(1,1,1) rotateX(90deg);
+    opacity: 1;
+    //box-shadow: 0 2px 4px rgba(0,0,0,.3);
+  }
+  25.1%{
+    transform: scale3d(1,1,1) rotateX(90.36deg);
+    opacity: 0;
+    //box-shadow: 0 2px 4px rgba(0,0,0,.3);
+  }
+  50% {
+    transform: scale3d(1,1,1) rotateX(180deg);
+    opacity: 0;
+    //box-shadow: 0 20px 40px rgba(0,0,0,.8);
+  }
+  74.9% {
+    transform: scale3d(1,1,1) rotateX(269.64deg);
+    opacity: 0;
+    //box-shadow: 0 20px 40px rgba(0,0,0,.8);
+  }
+  75% {
+    transform: scale3d(1,1,1) rotateX(270deg);
+    opacity: 1;
+    //box-shadow: 0 20px 40px rgba(0,0,0,.8);
+  }
+  100% {
+    transform: scale3d(1,1,1) rotateX(360deg);
+    opacity: 1;
+    //box-shadow: 0 2px 4px rgba(0,0,0,.3);
+  }
+}
+.animate-coint {
+  animation: flip2 .4s 4;
+}
+@keyframes flip2 {
+  0% {
+    transform: scale3d(1,1,1) rotateX(0deg);
+    opacity: 0;
+    //box-shadow: 0 2px 4px rgba(0,0,0,.3);
+  }
+  25% {
+    transform: scale3d(1,1,1) rotateX(90deg);
+    opacity: 0;
+    //box-shadow: 0 2px 4px rgba(0,0,0,.3);
+  }
+  25.1%{
+    transform: scale3d(1,1,1) rotateX(90.36deg);
+    opacity: 1;
+    //box-shadow: 0 2px 4px rgba(0,0,0,.3);
+  }
+  50% {
+    transform: scale3d(1,1,1) rotateX(180deg);
+    opacity: 1;
+    //box-shadow: 0 20px 40px rgba(0,0,0,.8);
+  }
+  74.9% {
+    transform: scale3d(1,1,1) rotateX(269.64deg);
+    opacity: 1;
+    //box-shadow: 0 20px 40px rgba(0,0,0,.8);
+  }
+  75% {
+    transform: scale3d(1,1,1) rotateX(270deg);
+    opacity: 0;
+    //box-shadow: 0 20px 40px rgba(0,0,0,.8);
+  }
+  100% {
+    transform: scale3d(1,1,1) rotateX(360deg);
+    opacity: 0;
+    //box-shadow: 0 2px 4px rgba(0,0,0,.3);
+  }
+}
+
+
