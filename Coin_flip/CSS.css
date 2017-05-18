@@ -17,6 +17,32 @@ body {
     opacity:0.5;
   }
 }
+#multiple {
+  position: relative;
+  background:orange;
+  color:#fff;
+  padding:10px 15px;
+  border-radius:2px;
+  display:inline-block;
+  transition:0.5s;
+  cursor:pointer;
+  &:hover {
+    opacity:0.5;
+  }
+}
+#reset {
+  position: relative;
+  background:orange;
+  color:#fff;
+  padding:10px 15px;
+  border-radius:2px;
+  display:inline-block;
+  transition:0.5s;
+  cursor:pointer;
+  &:hover {
+    opacity:0.5;
+  }
+}
 #heads{
   position: relative;
   left: 0px;
@@ -39,7 +65,7 @@ body {
   left: 0px;
   top: 0px;
 }
-
+//animation for heads part
 .animate-coinh {
   animation: flip1 .4s 4;
 }
@@ -79,6 +105,7 @@ body {
     //box-shadow: 0 2px 4px rgba(0,0,0,.3);
   }
 }
+//animation for tails part
 .animate-coint {
   animation: flip2 .4s 4;
 }

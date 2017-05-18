@@ -1,5 +1,7 @@
 var coin = document.getElementById('coin');
 var button = document.getElementById('button');
+var multiple = document.getElementById('multiple');
+var reset = document.getElementById('reset');
 var result = document.getElementById('result');
 var headsCounter = document.getElementById('headsCounter');
 var TailsCounter = document.getElementById('TailsCounter');
@@ -22,9 +24,53 @@ function coinToss() {
     result.innerHTML = 'You got tails';
      tailsCounter.innerHTML = '<h1> Number of tails: ' + tails + '</h1>';},1600);
 }
-
+}
+function multipletoss(animation,times){
+	//the animation feature not yet implemented
+	if (animation){
+		var a=0;
+		while(a<times){
+			coinToss();
+			a++;
+		}
+	}
+	//without animation
+	else{
+		var a = 0;
+		while(a<times){
+		var x = Math.floor(Math.random() * 2);
+		if (x === 0) { heads++; 
+  }
+  		else{
+  			tails++;
+  		}
+  		a++;
+	}
+	headsCounter.innerHTML = '<h1> Number of heads: ' + heads + '</h1>';
+	tailsCounter.innerHTML = '<h1> Number of tails: ' + tails + '</h1>';
+}
+}
+//function for reset
+function restart() {
+	heads = 0;
+	tails = 0;
+	result.innerHTML = '';
+	headsCounter.innerHTML = '';
+	tailsCounter.innerHTML = '';
+	coin.innerHTML = '';
 }
 button.onclick = function() {
   coinToss();
+}
+//Tosses coin multiple times
+multiple.onclick = function() {
+  var times = prompt("Enter no. of flips");
+  //var animation = confirm("Click Ok to show all animations or cancel to show final result");
+  multipletoss(false,times);
+}
+//the animation feature is not currently implemented
+//resets the page
+reset.onclick = function() {
+  restart();
 }
 
