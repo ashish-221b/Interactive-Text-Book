@@ -65,7 +65,6 @@ body {
   left: 0px;
   top: 0px;
 }
-//animation for heads part
 .animate-coinh {
   animation: flip1 .4s 4;
 }
@@ -105,7 +104,6 @@ body {
     //box-shadow: 0 2px 4px rgba(0,0,0,.3);
   }
 }
-//animation for tails part
 .animate-coint {
   animation: flip2 .4s 4;
 }
