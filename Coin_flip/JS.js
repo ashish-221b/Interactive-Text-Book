@@ -5,6 +5,9 @@ var reset = document.getElementById('reset');
 var result = document.getElementById('result');
 var headsCounter = document.getElementById('headsCounter');
 var TailsCounter = document.getElementById('TailsCounter');
+function round(n1,n2){
+  return Math.round(n1*Math.pow(10,n2))/Math.pow(10,n2);
+}
 var cointimes=[0,0];
 var probTheo=[.5,.5];
 headsCounter.innerHTML = '<h1> Number of heads: ' + cointimes[0] + '</h1>';
@@ -41,16 +44,20 @@ function multipletoss(animation,times){
 	}
 	//without animation
 	else{
-		var a = 0;
-		while(a<times){
-		var x = Math.floor(Math.random() * 2);
-		if (x === 0) { cointimes[0]++; 
-  }
-  		else{
-  			cointimes[1]++;
-  		}
-  		a++;
-	}
+		var count = 0;
+    var interval = setInterval(function() {
+    var x = Math.floor(Math.random() * 2);
+    if (x === 0) { cointimes[0]++;}
+      else{
+        cointimes[1]++;
+      }
+      count++;
+      headsCounter.innerHTML=count;
+      updateCoin();
+      if (count === times){
+          window.clearInterval(this);
+        }    
+  }, 100);
 	headsCounter.innerHTML = '<h1> Number of heads: ' + cointimes[0] + '</h1>';
 	tailsCounter.innerHTML = '<h1> Number of tails: ' + cointimes[1] + '</h1>';
 }
@@ -91,7 +98,11 @@ var x0ScaleCoin = d3.scale.ordinal().domain(['Observed','Theoretical']).rangeRou
 var x1ScaleCoin = d3.scale.ordinal().domain(['head','tail']).rangeRoundBands([0, 100]);
 var states = containerCoin.selectAll("g.state").data(coinData).enter().append("g").attr("class", "state");
 var rects = states.selectAll("rect").data(function(d) { return d.data; }).enter().append("rect");
-
+var sides = states.selectAll("image").data(function(d) { return d.data; }).enter().append("image");
+var axisCoin = svgCoin.append("g").attr("class", "x axis");
+var xAxisCoin = d3.svg.axis().scale(x0ScaleCoin).orient("bottom").ticks(0);
+var tipCoinObs = d3.tip().attr('id', 'tipCoinObs').attr('class', 'd3-tip').offset([-10, 0]);
+var tipCoinTheo = d3.tip().attr('id','tipCoinTheo').attr('class', 'd3-tip').offset([-10, 0]);
 function updateCoin() {
   var total = Math.max(1,cointimes[0]+cointimes[1]);
   var probObs = [cointimes[0]/total,cointimes[1]/total];
@@ -99,16 +110,30 @@ function updateCoin() {
   coinData[0].data[1].value = probObs[1];
   coinData[1].data[0].value = probTheo[0];
   coinData[1].data[1].value = probTheo[1];
+  tipCoinObs.html(function(d) { return round(d.value,3) +' = '+d.value*total+'/'+total;});
+  tipCoinTheo.html(function(d,i) { return round(d.value,3);});
 
   states
     .attr("transform", function(d) { return "translate(" + x0ScaleCoin(d.state) + "," + 80 + ")"; })
     .attr("class", function(d) { return d.state; });
   rects
     .transition() // NEW
-    .duration(300)
+    .duration(50)
     .attr("width", x1ScaleCoin.rangeBand())
     .attr("x", function(d,i) { return x1ScaleCoin(d.side)+i*20+100; })
-    .attr("y", function(d) { return yScaleCoin(d.value); })
-    .attr("height", function(d) { return yScaleCoin(1-d.value); })
+    .attr("y", function(d) { return yScaleCoin(1-d.value); })
+    .attr("height", function(d) { return yScaleCoin(d.value); })
     .attr("class", function(d) { return d.side; });
+containerCoin.selectAll('g.Observed rect').each(function(){
+    d3.select(this).on('mouseover', tipCoinObs.show).on('mouseout', tipCoinObs.hide);
+  })
+  containerCoin.selectAll('g.Theoretical rect').each(function(){
+    d3.select(this).on('mousedown', function(d){tipCoinTheo.show(d,this)})
+            .on('mouseover', function(d){tipCoinTheo.show(d,this)})
+            .on('mouseout', tipCoinTheo.hide)
+  })  
 }
+updateCoin();
+var width = d3.select('#graphs').node().clientWidth;
+axisCoin.attr("transform", "translate(" + 50 + "," + 330 + ")").call(xAxisCoin);
+svgCoin.attr("width", width).attr("height", 550).call(tipCoinObs).call(tipCoinTheo);
