@@ -1,6 +1,17 @@
 body {
+  height: 100%;
+  width: 100%;
   background: #fff;
   font-family: 'Ubuntu', sans-serif;
+}
+.rows {
+     height: 100%;
+}
+.col-md-4 {
+     height: 100%;
+}
+.col-md-8 {
+     height: 100%;
 }
 #coin {
 }
