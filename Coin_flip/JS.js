@@ -13,6 +13,14 @@ var probTheo=[.5,.5];
 headsCounter.innerHTML = '<h1> Number of heads: ' + cointimes[0] + '</h1>';
 tailsCounter.innerHTML = '<h1> Number of tails: ' + cointimes[1] + '</h1>';
 /* On click of button spin coin ainamtion */
+function restart() {
+  cointimes[0] = 0;
+  cointimes[1] = 0;
+  result.innerHTML = '';
+  headsCounter.innerHTML = '';
+  tailsCounter.innerHTML = '';
+  coin.innerHTML = '';
+}
 function coinToss() {
   /* Random number 0 or 1  */
   var x = Math.floor(Math.random() * 2);
@@ -33,7 +41,9 @@ function coinToss() {
 
 }
 }
+var multipletossflag=0
 function multipletoss(animation,times){
+  multipletossflag ++;
 	//the animation feature not yet implemented
 	if (animation){
 		var a=0;
@@ -44,22 +54,40 @@ function multipletoss(animation,times){
 	}
 	//without animation
 	else{
+    
 		var count = 0;
+
     var interval = setInterval(function() {
     var x = Math.floor(Math.random() * 2);
-    if (x === 0) { cointimes[0]++;}
+    if (x == 0) { cointimes[0]++;}
       else{
         cointimes[1]++;
       }
       count++;
       headsCounter.innerHTML=count;
       updateCoin();
-      if (count === times){
-          window.clearInterval(this);
-        }    
-  }, 100);
+      console.log(times+" "+count+ " "+ multipletossflag)
+      if (count == times){
+          window.clearInterval(interval);
+          multipletossflag=0;
+        }
+      if (count >0 &&  multipletossflag == 2)
+      {
+        window.clearInterval(interval);
+        multipletossflag=1;
+      }
+     if (count >0 &&  multipletossflag == 5)
+     {
+
+        window.clearInterval(interval);
+        multipletossflag=0;
+        restart();
+     }
+
+  }, 10);
 	headsCounter.innerHTML = '<h1> Number of heads: ' + cointimes[0] + '</h1>';
 	tailsCounter.innerHTML = '<h1> Number of tails: ' + cointimes[1] + '</h1>';
+ 
 }
 }
 //function for reset
@@ -70,20 +98,27 @@ function restart() {
 	headsCounter.innerHTML = '';
 	tailsCounter.innerHTML = '';
 	coin.innerHTML = '';
+  updateCoin();
+}
+function resetfunc() // TODO: implement graph update
+{
+multipletossflag=5;
 }
 button.onclick = function() {
   coinToss();
 }
 //Tosses coin multiple times
 multiple.onclick = function() {
+
   var times = prompt("Enter no. of flips");
   //var animation = confirm("Click Ok to show all animations or cancel to show final result");
+  restart();
   multipletoss(false,times);
 }
 //the animation feature is not currently implemented
 //resets the page
 reset.onclick = function() {
-  restart();
+  resetfunc();
 }
 //for graph
 var coinData = [{data:[{value:0,side:'head'},{value:0,side:'tail'}],state:'Observed'},
