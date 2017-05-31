@@ -72,18 +72,18 @@ function multipletoss(animation,times){
           window.clearInterval(interval);
           multipletossflag=0;
         }
-      if (count >0 &&  multipletossflag == 2)
-      {
-        window.clearInterval(interval);
-        multipletossflag=1;
-      }
-     if (count >0 &&  multipletossflag == 5)
-     {
+     //  if (count >0 &&  multipletossflag == 2)
+     //  {
+     //    window.clearInterval(interval);
+     //    multipletossflag=1;
+     //  }
+     // if (count >0 &&  multipletossflag == 5)
+     // {
 
-        window.clearInterval(interval);
-        multipletossflag=0;
-        restart();
-     }
+     //    window.clearInterval(interval);
+     //    multipletossflag=0;
+     //    restart();
+     // }
 
   }, 10);
  
@@ -107,7 +107,8 @@ multiple.onclick = function() {
 
   var times = prompt("Enter no. of flips");
   //var animation = confirm("Click Ok to show all animations or cancel to show final result");
-  multipletoss(false,times);
+  if(times>0){
+  multipletoss(false,times);}
 }
 //the animation feature is not currently implemented
 //resets the page
@@ -132,6 +133,14 @@ var axisCoin = svgCoin.append("g").attr("class", "x axis");
 var xAxisCoin = d3.svg.axis().scale(x0ScaleCoin).orient("bottom").ticks(0);
 var tipCoinObs = d3.tip().attr('id', 'tipCoinObs').attr('class', 'd3-tip').offset([-10, 0]);
 var tipCoinTheo = d3.tip().attr('id','tipCoinTheo').attr('class', 'd3-tip').offset([-10, 0]);
+function extractor(side){
+  if(side=='head'){
+    return cointimes[0];
+  }
+  else{
+    return cointimes[1];
+  }
+}
 function updateCoin() {
   var total = Math.max(1,cointimes[0]+cointimes[1]);
   var probObs = [cointimes[0]/total,cointimes[1]/total];
@@ -139,7 +148,7 @@ function updateCoin() {
   coinData[0].data[1].value = probObs[1];
   coinData[1].data[0].value = probTheo[0];
   coinData[1].data[1].value = probTheo[1];
-  tipCoinObs.html(function(d) { return round(d.value,3) +' = '+d.value*total+'/'+total;});
+  tipCoinObs.html(function(d) { return round(d.value,3) +' = '+extractor(d.side)+'/'+total;});
   tipCoinTheo.html(function(d,i) { return round(d.value,3);});
 
   states
