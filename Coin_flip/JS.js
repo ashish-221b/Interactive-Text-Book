@@ -13,14 +13,6 @@ var probTheo=[.5,.5];
 headsCounter.innerHTML = '<h1> Number of heads: ' + cointimes[0] + '</h1>';
 tailsCounter.innerHTML = '<h1> Number of tails: ' + cointimes[1] + '</h1>';
 /* On click of button spin coin ainamtion */
-function restart() {
-  cointimes[0] = 0;
-  cointimes[1] = 0;
-  result.innerHTML = '';
-  headsCounter.innerHTML = '';
-  tailsCounter.innerHTML = '';
-  coin.innerHTML = '';
-}
 function coinToss() {
   /* Random number 0 or 1  */
   var x = Math.floor(Math.random() * 2);
@@ -43,7 +35,6 @@ function coinToss() {
 }
 var multipletossflag=0
 function multipletoss(animation,times){
-  multipletossflag ++;
 	//the animation feature not yet implemented
 	if (animation){
 		var a=0;
@@ -77,13 +68,13 @@ function multipletoss(animation,times){
      //    window.clearInterval(interval);
      //    multipletossflag=1;
      //  }
-     // if (count >0 &&  multipletossflag == 5)
-     // {
+     if (count >0 &&  multipletossflag == 5)
+     {
 
-     //    window.clearInterval(interval);
-     //    multipletossflag=0;
-     //    restart();
-     // }
+        window.clearInterval(interval);
+        multipletossflag=0;
+        restart();
+     }
 
   }, 10);
  
@@ -108,6 +99,7 @@ multiple.onclick = function() {
   var times = prompt("Enter no. of flips");
   //var animation = confirm("Click Ok to show all animations or cancel to show final result");
   if(times>0){
+    multipletossflag=0;
   multipletoss(false,times);}
 }
 //the animation feature is not currently implemented
