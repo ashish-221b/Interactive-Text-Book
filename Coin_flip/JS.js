@@ -64,7 +64,8 @@ function multipletoss(animation,times){
         cointimes[1]++;
       }
       count++;
-      headsCounter.innerHTML=count;
+      headsCounter.innerHTML = '<h1> Number of heads: ' + cointimes[0] + '</h1>';
+      tailsCounter.innerHTML = '<h1> Number of tails: ' + cointimes[1] + '</h1>';
       updateCoin();
       console.log(times+" "+count+ " "+ multipletossflag)
       if (count == times){
@@ -85,8 +86,6 @@ function multipletoss(animation,times){
      }
 
   }, 10);
-	headsCounter.innerHTML = '<h1> Number of heads: ' + cointimes[0] + '</h1>';
-	tailsCounter.innerHTML = '<h1> Number of tails: ' + cointimes[1] + '</h1>';
  
 }
 }
@@ -95,14 +94,10 @@ function restart() {
 	cointimes[0] = 0;
 	cointimes[1] = 0;
 	result.innerHTML = '';
-	headsCounter.innerHTML = '';
-	tailsCounter.innerHTML = '';
-	coin.innerHTML = '';
-  updateCoin();
-}
-function resetfunc() // TODO: implement graph update
-{
-multipletossflag=5;
+	headsCounter.innerHTML = '<h1> Number of heads: ' + cointimes[0] + '</h1>';
+      tailsCounter.innerHTML = '<h1> Number of tails: ' + cointimes[1] + '</h1>';
+      updateCoin();
+	multipletossflag=5;
 }
 button.onclick = function() {
   coinToss();
@@ -112,13 +107,12 @@ multiple.onclick = function() {
 
   var times = prompt("Enter no. of flips");
   //var animation = confirm("Click Ok to show all animations or cancel to show final result");
-  restart();
   multipletoss(false,times);
 }
 //the animation feature is not currently implemented
 //resets the page
 reset.onclick = function() {
-  resetfunc();
+  restart();
 }
 //for graph
 var coinData = [{data:[{value:0,side:'head'},{value:0,side:'tail'}],state:'Observed'},
