@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+     
+<head>
+    <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Textillate.js</title>
+  <link href="assets/animate.css" rel="stylesheet">
+  <link href="assets/style.css" rel="stylesheet">
+  <link href='http://fonts.googleapis.com/css?family=Rokkitt' rel='stylesheet' type='text/css'>
+<title> Page 1 - Intro to probability </title>
+<style>
+
+h1 {
+	font-size: 24;
+	}
+p {
+	font-size: 12;
+	}
+</style>
+</head>
+<body>
+
+<div style="top:10%; width:50%; float:left; background-color:#973400" class="container">
+	<h1 class="tlt" data-in-effect="bounceInDown"> Intro to Probability </h1>
+
+	<p style="color:white" class="tlt" data-in-effect="bounceInDown"> Welcome to the first module! Here, you'll look at what probability is, and why it has become such an important tool in the modern world. </p>
+
+	<p style="color:white"> Probability is the way we handle uncertainty in day-to-day life. So whenever the outcome of a process, or more generally, the future is uncertain, the tools of probability and statistics give us a way to calculate the odds of whichever outcome we want. </p>
+	
+	<p> You'll see the basic concepts of probability explained in an intuitive, interactive way that not only allows for easy visualization and understanding of the concepts, but will allow you to retain and use this understanding in a wide variety of situations. After all, probability can be used absolutely everywhere! </p>
+	
+	<p> From the toss of a coin to the outcome of a stock purchase to the behaviour of large groups of people, to the laws of quantum physics themselves, uncertainty is built into every facet of existence. </p>
+    
+    <p>So the techniques for calculating and estimating these uncertainties in complex situations is useful everywhere too. Want to create artificially intelligent robots? Want to figure out whether the crores the government spent on welfare actually had the reported impact? Want to check how likely it is that you have diabetes if your test turned out positive? Want to make a lot of money investing in stocks? </p>
+    
+    <p>Probability, and its more famous heir, statistics is the palce you want to go</p>
+    
+    <h1 class="tlt">
+	<ul class="texts">
+		<li data-out-effect="fadeOut" data-out-shuffle="true">Some Title</li>
+		<li data-in-effect="fadeIn">Another Title</li>
+	</ul>
+</h1>
+</div>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+<script src="assets/jquery.fittext.js"></script>
+<script src="assets/jquery.lettering.js"></script>
+<script src="http://yandex.st/highlightjs/7.3/highlight.min.js"></script>
+<script src="jquery.textillate.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+    <script>
+    $(function () {
+	$('.tlt').textillate();
+})
+    </script>
+</body>
+</html>
