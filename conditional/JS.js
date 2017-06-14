@@ -124,10 +124,10 @@ function updateRects(dur) {
     .attr('x', function(d){ return xScaleCP(d.x + d.width/2) })
     .attr('y', function(d){ return yScaleCP(d.y + d.height + 0.05) });
 
-  circles.selectAll('g').each(function(){
-    d3.select(this).transition().duration(dur)
-      .attr('transform', function(d){return 'translate(' + xScaleCP(d.p) + ',0)'});
-  })
+  // circles.selectAll('g').each(function(){
+  //   d3.select(this).transition().duration(dur)
+  //     .attr('transform', function(d){return 'translate(' + xScaleCP(d.p) + ',0)'});
+  // })
 
   probRects.transition().duration(dur)
     .attr('x', function(d,i){ return xScaleProbCP(i); })
@@ -139,61 +139,61 @@ function updateRects(dur) {
 }
 
 //Drops ball randomly from 0 to 1
-function addBall(data){
-  var dur = 1000;
-  var p = Math.random();
-  var pos = [{t: 0}, {t: 1}];
-  var a, b, c, events = [];
-  var bisector = d3.bisector(function(d){ return d.t }).right
+// function addBall(data){
+//   var dur = 1000;
+//   var p = Math.random();
+//   var pos = [{t: 0}, {t: 1}];
+//   var a, b, c, events = [];
+//   var bisector = d3.bisector(function(d){ return d.t }).right
 
-  if(data[0].x <= p && p <= data[0].x + data[0].width) a = data[0]
-  if(data[1].x <= p && p <= data[1].x + data[1].width) b = data[1]
-  if(data[2].x <= p && p <= data[2].x + data[2].width) c = data[2]
-  if(a) pos.splice(bisector(pos) - 1, 0, { t: a.y, event: a.name})
-  if(b) pos.splice(bisector(pos) - 1, 0, { t: b.y, event: b.name})
-  if(c) pos.splice(bisector(pos) - 1, 0, { t: c.y, event: c.name})
-  if(a) events.push(a)
-  if(b) events.push(b)
-  if(c) events.push(c)
-  var g = circles.append('g').datum({p: p, events: events })
-      .attr('transform', function(d){return 'translate(' + xScaleCP(d.p) + ',0)'})
-  var circle = g.append('circle')
-                .attr('r', radius)
-                .attr('cy', function(){ return yScaleCP(0) });
+//   if(data[0].x <= p && p <= data[0].x + data[0].width) a = data[0]
+//   if(data[1].x <= p && p <= data[1].x + data[1].width) b = data[1]
+//   if(data[2].x <= p && p <= data[2].x + data[2].width) c = data[2]
+//   if(a) pos.splice(bisector(pos) - 1, 0, { t: a.y, event: a.name})
+//   if(b) pos.splice(bisector(pos) - 1, 0, { t: b.y, event: b.name})
+//   if(c) pos.splice(bisector(pos) - 1, 0, { t: c.y, event: c.name})
+//   if(a) events.push(a)
+//   if(b) events.push(b)
+//   if(c) events.push(c)
+//   var g = circles.append('g').datum({p: p, events: events })
+//       .attr('transform', function(d){return 'translate(' + xScaleCP(d.p) + ',0)'})
+//   var circle = g.append('circle')
+//                 .attr('r', radius)
+//                 .attr('cy', function(){ return yScaleCP(0) });
 
-  pos.forEach(function(d, i){
-    if(i === 0) return
-    var dt = pos[i].t - pos[i - 1].t
-    circle = circle
-      .transition()
-      .duration(dur * dt)
-      .ease('bounce')
-      .attr('cy', function(){ return yScaleCP(d.t) })
-      .each('end', function(){ if(d.event) d3.select(this).classed(d.event, true) })
-  })
-  circle.each('end', function(d){
-    d3.select(this.parentNode).remove();
-  })
-}
+//   pos.forEach(function(d, i){
+//     if(i === 0) return
+//     var dt = pos[i].t - pos[i - 1].t
+//     circle = circle
+//       .transition()
+//       .duration(dur * dt)
+//       .ease('bounce')
+//       .attr('cy', function(){ return yScaleCP(d.t) })
+//       .each('end', function(){ if(d.event) d3.select(this).classed(d.event, true) })
+//   })
+//   circle.each('end', function(d){
+//     d3.select(this.parentNode).remove();
+//   })
+// }
 
 //Start and Stop ball sampling
-var interval;
-function start() {
-  interval = setInterval(function() {
-  }, 1);
-}
-function stop() {
-  clearInterval(interval);
-}
+// var interval;
+// function start() {
+//   interval = setInterval(function() {
+//   }, 1);
+// }
+// function stop() {
+//   clearInterval(interval);
+// }
 
 //Handles start and stop buttons
-$('.ballBtns').on('click', function(){
-  var button = d3.select(this).attr('id');
-  if(button=='start') start();
-  if(button=='stop')  stop();
-  $('#start').toggle();
-  $('#stop').toggle();
-})
+// $('.ballBtns').on('click', function(){
+//   var button = d3.select(this).attr('id');
+//   if(button=='start') start();
+//   if(button=='stop')  stop();
+//   $('#start').toggle();
+//   $('#stop').toggle();
+// })
 
 //Handle Perspective Buttons
 $('.perspective').on('click', function(){
@@ -307,7 +307,7 @@ function drawCP() {
   changePerspective(currentPerspective);
   updateRects(0)
 }
-start();
+// start();
 var lightrays=[];
 for (var i = 0; i < 2130; i++) {
 	lightrays.push(i);
