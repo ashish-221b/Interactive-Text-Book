@@ -17,6 +17,9 @@ var eventsData = [
         { x: 1/3, y: 0.4, width: 1/2, height: 0.05, name: 'B' },
         { x: 1/2, y: 0.6, width: 1/2, height: 0.05, name: 'C' }
     ];
+var temp = [0,0,0];
+var ident = ['a','b','c']
+var toggle_data = [1,1,1];
 var mapper = {0: "P(A)", 1: "P(B)", 2: "P(C)"};
 //var m = document.getElementsByClassName(A);
 //Create SVG
@@ -55,18 +58,20 @@ var dragLeft = d3.behavior.drag()
          .on('drag', function(d,i) {
             var x = Math.max(0,Math.min(xScaleCP.invert(d3.event.x),(eventsData[i].x+eventsData[i].width),1));
             var change = eventsData[i].x - x;
-            eventsData[i].x = x;
-            eventsData[i].width = Math.max(0,eventsData[i].width + change);
-            changePerspective(currentPerspective);
-            updateRects(0);
+            if(toggle_data[i]==1){
+                        eventsData[i].x = x;
+                        eventsData[i].width = Math.max(0,eventsData[i].width + change);
+                        changePerspective(currentPerspective);
+                        updateRects(0);}
          })
 var dragRight = d3.behavior.drag()
          .on('dragstart', function(){d3.select(this).moveToFront();})
          .on('drag', function(d,i) {
             var w = Math.max(0,Math.min(xScaleCP.invert(d3.event.x)-eventsData[i].x,(1-eventsData[i].x)));
-            eventsData[i].width = w;
-            changePerspective(currentPerspective);
-            updateRects(0);
+            if(toggle_data[i]==1){
+                        eventsData[i].width = w;
+                        changePerspective(currentPerspective);
+                        updateRects(0);}
          })
 
 //Tool tip for Prob
@@ -137,64 +142,6 @@ function updateRects(dur) {
    addBars();
   //calcIndependence();
 }
-
-//Drops ball randomly from 0 to 1
-// function addBall(data){
-//   var dur = 1000;
-//   var p = Math.random();
-//   var pos = [{t: 0}, {t: 1}];
-//   var a, b, c, events = [];
-//   var bisector = d3.bisector(function(d){ return d.t }).right
-
-//   if(data[0].x <= p && p <= data[0].x + data[0].width) a = data[0]
-//   if(data[1].x <= p && p <= data[1].x + data[1].width) b = data[1]
-//   if(data[2].x <= p && p <= data[2].x + data[2].width) c = data[2]
-//   if(a) pos.splice(bisector(pos) - 1, 0, { t: a.y, event: a.name})
-//   if(b) pos.splice(bisector(pos) - 1, 0, { t: b.y, event: b.name})
-//   if(c) pos.splice(bisector(pos) - 1, 0, { t: c.y, event: c.name})
-//   if(a) events.push(a)
-//   if(b) events.push(b)
-//   if(c) events.push(c)
-//   var g = circles.append('g').datum({p: p, events: events })
-//       .attr('transform', function(d){return 'translate(' + xScaleCP(d.p) + ',0)'})
-//   var circle = g.append('circle')
-//                 .attr('r', radius)
-//                 .attr('cy', function(){ return yScaleCP(0) });
-
-//   pos.forEach(function(d, i){
-//     if(i === 0) return
-//     var dt = pos[i].t - pos[i - 1].t
-//     circle = circle
-//       .transition()
-//       .duration(dur * dt)
-//       .ease('bounce')
-//       .attr('cy', function(){ return yScaleCP(d.t) })
-//       .each('end', function(){ if(d.event) d3.select(this).classed(d.event, true) })
-//   })
-//   circle.each('end', function(d){
-//     d3.select(this.parentNode).remove();
-//   })
-// }
-
-//Start and Stop ball sampling
-// var interval;
-// function start() {
-//   interval = setInterval(function() {
-//   }, 1);
-// }
-// function stop() {
-//   clearInterval(interval);
-// }
-
-//Handles start and stop buttons
-// $('.ballBtns').on('click', function(){
-//   var button = d3.select(this).attr('id');
-//   if(button=='start') start();
-//   if(button=='stop')  stop();
-//   $('#start').toggle();
-//   $('#stop').toggle();
-// })
-
 //Handle Perspective Buttons
 $('.perspective').on('click', function(){
   $('#'+currentPerspective).toggleClass('active');
@@ -202,6 +149,20 @@ $('.perspective').on('click', function(){
   changePerspective(d3.select(this).attr('id'));
   updateRects(1000);
 })
+$('.toggle_bar').on('click', function(){
+  toggling(d3.select(this).attr('id'));
+  updateRects(1000);
+})
+function toggling(p){
+	if(toggle_data[p]==1&&(currentPerspective!=ident[p])){
+		temp[p]=eventsData[p].width;
+		eventsData[p].width=0;
+		toggle_data[p]=0;}
+	else if(toggle_data[p]==0){
+		eventsData[p].width=temp[p];
+		toggle_data[p]=1;
+	}
+}
 
 //Changes Perspective
 function changePerspective(p){
