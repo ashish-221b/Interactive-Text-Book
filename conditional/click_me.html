@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+     
+<head>
+    <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Conditional probability</title>
+    <!-- Bootstrap Core CSS -->
+  <link href="../css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Scrolling CSS -->
+  <link href="../css/scrolling-nav.css" rel="stylesheet">
+
+  <!-- Off Canvas CSS -->
+  <link href="../css/jasny-bootstrap.min.css" rel="stylesheet">
+
+  <!-- Slider CSS -->
+  <link href="../css/bootstrap-slider.min.css" rel="stylesheet">
+
+  <!-- Select CSS -->
+  <link href="../css/bootstrap-select.min.css" rel="stylesheet">
+
+  <!-- Main CSS -->
+  <link href="../css/main.css" rel="stylesheet">
+
+  <!-- Visualization CSS -->
+  <link href="./CSS.css" rel="stylesheet">
+
+  <!-- MathJax JS -->
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+
+<link rel="stylesheet" type="text/css" href="CSS.css">
+ <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="../js/d3.min.js"></script>
+<script src="../js/d3.tip.v0.6.3.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="assets/animate.css" rel="stylesheet">
+  <link href="assets/style.css" rel="stylesheet">
+  <link href='http://fonts.googleapis.com/css?family=Rokkitt' rel='stylesheet' type='text/css'>
+<title> Page 1 - Intro to probability </title>
+<style>
+body{
+	background-color: white;
+}
+h1 {
+	font-size: 24;
+	}
+p {
+	font-size: 12;
+	}
+</style>
+</head>
+<body>
+
+<div style="top:10%; width:50%; float:left; background-color:#973400" class="container">
+	<h1 class="tlt" data-in-effect="bounceInDown"> Conditional Probability </h1>
+
+	<p style="color:white" class="tlt" data-in-effect="bounceInDown">Conditional probability is a measure of the probability of an event given another event has occurred. It can be expressed mathematically as the following:</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+  <mi>P</mi>
+  <mo stretchy="false">(</mo>
+  <mi>A</mi>
+  <mrow class="MJX-TeXAtom-ORD">
+    <mo stretchy="false">|</mo>
+  </mrow>
+  <mi>B</mi>
+  <mo stretchy="false">)</mo>
+  <mo>=</mo>
+  <mstyle displaystyle="true" scriptlevel="0">
+    <mfrac>
+      <mrow>
+        <mi>P</mi>
+        <mo stretchy="false">(</mo>
+        <mi>A</mi>
+        <mo>&#x2229;<!-- ∩ --></mo>
+        <mi>B</mi>
+        <mo stretchy="false">)</mo>
+      </mrow>
+      <mrow>
+        <mi>P</mi>
+        <mo stretchy="false">(</mo>
+        <mi>B</mi>
+        <mo stretchy="false">)</mo>
+      </mrow>
+    </mfrac>
+  </mstyle>
+</math>
+	                    <p style="color:white">To visualize this concept move and rescale the shelfs by drag and drop and toggle the current perspective.  What is the probability a ball lands on a shelf? What is the probability given the ball has or will hit another shelf?</p>
+
+    <h1 class="tlt">
+	<ul class="texts">
+		<li data-out-effect="fadeOut" data-out-shuffle="true">Some Title</li>
+		<li data-in-effect="fadeIn">Another Title</li>
+	</ul>
+</h1>
+</div>
+<section id="third" class="third-section">
+        <div class="container">
+            <div class="row">
+              <div class="col-xs-4">
+                  <div id='svgProbCP'></div>
+                </div>
+                <div class="col-xs-8">
+                    <div id='svgBallCP'></div>
+                    <!-- <div id="ballControl">
+                        <div class="btn btn-default ballBtns" id="start" style="display:none">Start Ball Drop</div>
+                        <div class="btn btn-default ballBtns" id="stop">Stop Ball Drop</div>
+                    </div> -->
+                    <div id="perspectiveControl">
+                        <label style="color:black">Perspective:</label>
+                        <div class="btn btn-default perspective" id="a">A</div>
+                        <div class="btn btn-default perspective" id="b">B</div>
+                        <div class="btn btn-default perspective" id="c">C</div>
+                        <div class="btn btn-default perspective active" id="universe">Universe</div>
+                    </div><br><br><br>
+                    <div id="perspectiveControl">
+                        <div class="btn btn-default toggle_bar" id=0>Toggle A</div>
+                        <div class="btn btn-default toggle_bar" id=1>Toggle B</div>
+                        <div class="btn btn-default toggle_bar" id=2>Toggle C</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+        <!-- D3 -->
+        <script src="../js/d3.min.js"></script>
+
+        <!-- jQuery -->
+        <script src="../js/jquery.js"></script>
+
+        <!-- Bootstrap Core JavaScript -->
+        <script src="../js/bootstrap.min.js"></script>
+
+        <!-- Scrolling Nav JavaScript -->
+        <script src="../js/jquery.easing.min.js"></script>
+        <script src="../js/scrolling-nav.js"></script>
+
+        <!-- Off Canvas Menu JavaScript -->
+        <script src="../js/jasny-bootstrap.min.js"></script>
+
+        <!-- jstat -->
+        <script src="../js/jstat.min.js"></script>
+
+        <!-- Slider JavaScript -->
+        <script src="../js/bootstrap-slider.min.js"></script>
+
+        <!-- Select JavaScript -->
+        <script src="../js/bootstrap-select.min.js"></script>
+
+        <!-- Tool Tip JavaScript -->
+        <script src="../js/d3.tip.v0.6.3.js"></script>
+
+        <!-- Main JavaScript -->
+        <script src="../js/main.js"></script>
+
+<script src="JS.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+<script src="assets/jquery.fittext.js"></script>
+<script src="assets/jquery.lettering.js"></script>
+<script src="http://yandex.st/highlightjs/7.3/highlight.min.js"></script>
+<script src="jquery.textillate.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+    <script>
+    $(function () {
+	$('.tlt').textillate();
+})
+    </script>
+
+</body>
+</html>
