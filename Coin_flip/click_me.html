@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+     
+<head>
+<link rel="stylesheet" type="text/css" href="CSS.css">
+ <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="../js/d3.min.js"></script>
+<script src="../js/d3.tip.v0.6.3.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CoinToss</title>
+  <link href="assets/animate.css" rel="stylesheet">
+  <link href="assets/style.css" rel="stylesheet">
+  <link href='http://fonts.googleapis.com/css?family=Rokkitt' rel='stylesheet' type='text/css'>
+<title> Page 1 - Intro to probability </title>
+<style>
+
+h1 {
+	font-size: 24;font-weight:bold;
+	font-family: "Verdana", Times, serif;
+	}
+p {
+	font-size: 12;margin-left: 15px;
+	 margin-top: 10px;
+	}
+	p.tlt{
+	font-size-adjust: 1;
+}	
+</style>
+</head>
+<body>
+
+<div style="top:10%; width:100%; float:left; background-color:#ff0000" class="container">
+	<h1 class="tlt" data-in-effect="bounceInDown"> Intro to Probability </h1>
+
+	<p style="color:white" class="tlt" data-in-effect="bounceInDown" data-in-shuffle="true"> Welcome to the first module! Here, you'll look at what probability is, and why it has become such an important tool in the modern world. </p>
+
+	<p>Probability is the way we handle uncertainty in day-to-day life. So whenever the outcome of a process, or more generally, the future is uncertain, the tools of probability and statistics give us a way to calculate the odds of whichever outcome we want. </p>
+	
+	<p> You'll see the basic concepts of probability explained in an intuitive, interactive way that not only allows for easy visualization and understanding of the concepts, but will allow you to retain and use this understanding in a wide variety of situations. After all, probability can be used absolutely everywhere! </p>
+	
+	<p> From the toss of a coin to the outcome of a stock purchase to the behaviour of large groups of people, to the laws of quantum physics themselves, uncertainty is built into every facet of existence. </p>
+    
+    <p>So the techniques for calculating and estimating these uncertainties in complex situations is useful everywhere too. Want to create artificially intelligent robots? Want to figure out whether the crores the government spent on welfare actually had the reported impact? Want to check how likely it is that you have diabetes if your test turned out positive? Want to make a lot of money investing in stocks? </p>
+    
+    <p>Probability, and its more famous heir, statistics is the palce you want to go</p>
+    
+    <h1 class="tlt">
+	<!--<ul class="texts">
+		<li data-out-effect="fadeOut" data-out-shuffle="true">Some Title</li>
+		<li data-in-effect="fadeIn">Another Title</li>
+	</ul>-->
+</h1>
+</div>
+<section id="first" class="first-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-4">
+                    <h1>Likelihood</h1>
+                    <hr>
+                    <div class="container">
+                        <p class="tlt" data-in-effect="fadeInLeftX">Probability is the measure of the likelihood that an event will occur. It is quantified as a number between 0 and 1, where 0 indicates impossibility and 1 indicates certainty. A simple example is the tossing of a coin that has two sides: head and tail. We can describe the probability of this event in terms of the observed outcomes or the expected results.</p> </div>
+                                        <p>For a "fair" coin, the probability of head equals the probability of tail. However, for an "unfair" or "weighted" coin the two outcomes are not equally likely. Change the "weight" of the coin by dragging and dropping the expected probability and see how this affects the observed outcomes.</p>
+                </div>
+                
+            </div>
+        </div>
+            </section>
+<section>
+<div class="row">
+<div class=col-md-4 style="background-color:lavender;">
+<div id='coin'>
+<img src="https://upload.wikimedia.org/wikipedia/en/5/52/British_fifty_pence_coin_2015_obverse.png"/>
+</div>
+<div id='button'>
+  Flip Once
+</div>
+<div id='multiple'>
+  Flip Multiple
+</div>
+
+<div id='reset'>
+  Reset
+</div>
+<div id='result'>
+</div>
+<div id='headsCounter'>
+</div>
+<div id='tailsCounter'>
+</div>
+</div>
+<div id='graphs' class=col-md-8 style="background-color:lavenderblush;">
+</div>
+</div>
+</section>
+<script src="JS.js"></script
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+<script src="assets/jquery.fittext.js"></script>
+<script src="assets/jquery.lettering.js"></script>
+<script src="http://yandex.st/highlightjs/7.3/highlight.min.js"></script>
+<script src="jquery.textillate.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+    <script>
+    $(function () {
+	$('.tlt').textillate();
+})
+    </script>
+</body>
+</html>
